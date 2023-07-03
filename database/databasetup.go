@@ -3,16 +3,18 @@ package database
 
 import (
 	"log"
+	"time"
+	"fmt"
 	"context"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
-func DBSet() *mongo.client(){
+func DBSet() *mongo.Client{
 	client , err := mongo.NewClient(options.Client().ApplyURI("mongodb://localhost:27017"));
 	if err != nil{
 		log.Fatal(err)
 	}
-	ctx,cancel  := context.WithTimeOut(context.Background(),10*time.Second)
+	ctx,cancel  := context.WithTimeout(context.Background(),10*time.Second)
 	defer cancel()
 	err = client.Connect(ctx)
 	if err != nil{
@@ -20,7 +22,7 @@ func DBSet() *mongo.client(){
 	}
 	err = client.Ping(context.TODO(),	nil)
 	if err != nil{
-		log.Println("failed to connect to mongoDB :(")
+		log.Println("failed to connect to mongoDB")
 		return nil
 	}
 	fmt.Println("Successfully connect to mongodb")

@@ -1,6 +1,8 @@
 package controllers
-
-func AddAddress() gin.HanderlFunc{
+import(
+	"github.com/gin-gonic/gin"
+)
+func AddAddress() gin.HandlerFunc{
 
 }
 
@@ -8,10 +10,7 @@ func AddAddress() gin.HanderlFunc{
 func EditHomeAddress() gin.HandlerFunc{
 
 }
-func EditHomeAddress() gin.HandlerFunc{
 
-}
-
-func DeleteAddress() gin.HanderlFunc{
+func DeleteAddress() gin.HandlerFunc{
 	
 }

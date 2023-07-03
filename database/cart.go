@@ -1,7 +1,7 @@
-package controllers
+package database
 
 import(
-
+	"errors"
 )
 
 var(

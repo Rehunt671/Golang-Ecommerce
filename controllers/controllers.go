@@ -2,11 +2,11 @@ package controllers
 
 
 import(
-
+	"github.com/gin-gonic/gin"
 )
 
 func HashPassWord(password string) string{
-
+ 
 }
 
 func VerifyPassword(userpassword string,givenPassword string)(bool,string){
@@ -92,7 +92,7 @@ func Login() gin.HandlerFunc{
 			fmt.Println(msg)
 			return 
 		}
-		token, refresh_token := generate.TokenGenerator(*founduser.Email,*founduser.First_Name,*founduser.Last_Name,*founduser.User_ID)
+		token, refresh_token := generate.TokenGenerator(*founduser.Email,*founduser.First_Name,*founduser.Last_Name,founduser.User_ID)
 		defer cancel()
 
 		generate.UpdateAllTokens(tokens,refresh_token,founduser.User_ID)
@@ -113,6 +113,6 @@ func SearchProduct() gin.HandlerFunc{
 }
 
 
-func SearchProductByQuery() gin.HanderlFunc{
+func SearchProductByQuery() gin.HandlerFunc{
 	
 }
