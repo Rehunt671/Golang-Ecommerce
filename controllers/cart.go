@@ -111,8 +111,8 @@ func (app *Application)GetItemFromCart() gin.HandlerFunc{
 		}
 		filter_match := bson.D{{Key:"$match"},Value:bson.D{primitive.E{Key:"_id",usert_id}}}
 		unwind := bson.D{{Key:"$unwind" , Value:bson.D{primitive.E{Key:"path",Value:"$usercart"}}}}
-		grouping := bson.D{{Key:"$group"},Value:bson.D{primitive.E{Key:"_id",Value:"$_id"},{Key:"$sum",Value:"$usercart.price"}}}
-		poincursor,err := UserCollection.Aggregate(ctx,mogo.Pipeline(filter_match,unwind,grouping))
+		grouping := bson.D{{Key:"$group",Value:bson.D{primitive.E{Key:"_id",Value:"$_id"},{Key:"total", Value:bson.D{primitive.E{Key:"$sum",Value:"$usercart.price"}}}}}
+		poincursor,err := UserCollection.Aggregate(ctx,mongo.Pipeline(filter_match,unwind,grouping))
 		if err != nil{
 			log.Println(err)
 		}
